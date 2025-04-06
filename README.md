@@ -2,7 +2,7 @@
 
 ## PHASE 1: Brainstorm and build a simplified version of accounting software
 - The database design
-```
+```mermaid
 erDiagram
     ACCOUNTS ||--o{ JOURNAL_LINES : "recorded in"
     ACCOUNTS ||--o{ BANK_ACCOUNTS : "linked to"
