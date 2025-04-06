@@ -135,3 +135,38 @@ erDiagram
         string action
     }
 ```
+- challenges: ensure that multiple related transactions are processed concurrently. For example, when sales invoice is recorded, multiple accounts including sales account, AR account, COSG, inventory are affected. 
+- solution: 
+    - add function to validate double-entry to ensure journal entries are balanced
+    - event-driven architecture? 
+    - consider buidlign each module separately and connecting via APIs.     
+        - Advantages: flexible of tech stack chosen for each module, single point of failure avoided, separation of concerns and assignments. To implement this, have to think about how to design database ( should each module has one separate db). In pure microservices, each service should own its own db.
+        - Disadvantages: db system dont support FK that reference table in other db 
+            - solution: store ref ID without actual db constrains, dubplicate necs data to avoid cross-service queries, use events, or create a higher-level service that coordinates across domains.
+- phase 1: 
+    - create a simple app with simple sales/purchase recording buttons
+    - basic input form for amount and description
+    - preview of double-entry before confirming
+    - update account balances when transaction are recorded
+    - potentially has product entity with basic details
+    - drop down selection of product when recording transaction
+    - auto inventory quantity adjustment
+    - basic reporting of product quantity
+    - basic check if debits equal credits
+    - incorporating AI as much as possible and test around
+- phase 2: 
+    - create a more flexible chart of account structure
+    - basic financial reporting: simple trial balance, PL, balancesheet
+    - filtering transaction by date
+- phase 3: 
+    - add contacts module with customer/vendor db
+    - track outstanding balances
+    - add aging reports
+- phase 4:
+    - implement banking transaction, reconciliation 
+    - bas generation
+    - add more tax details
+### Learning notes
+- Sequelize library: model basics - define model, data type, options of setting createdAt and updatedAt manually, association with other module(belongs to, has many), sync model,drop model, add foreign key, how sequelize set table name and field name
+- more about node js: how to build and publish your own npmjs library - bin/cli.js, package.json setting ( need to do more projects on this!)
+- progressing on phase 1 of project: set up node project with express js, sequelize, dbConfig to define and connect to db, create models folder and define basic accounting Models and their relationships, sync models to create db tables if not exist
