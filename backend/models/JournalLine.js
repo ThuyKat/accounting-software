@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize"
-import { sequelize } from "../db.js"
-import { JournalEntry } from "./JournalEntry.js"
-import { Account } from "./Account.js"
+import sequelize from "../dbConfig.js"
+import JournalEntry from "./JournalEntry.js"
+import Account from "./Account.js"
 
 const JournalLine = sequelize.define('JournalLine', {
     id:{

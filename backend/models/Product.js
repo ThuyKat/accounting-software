@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize"
-import { sequelize } from "../db.js"
-import { Account } from "./Account.js"
+import sequelize from "../dbConfig.js"
+import Account from "./Account.js"
 
 const Product = sequelize.define('Product', {
     id:{
@@ -82,7 +82,7 @@ Product.belongsTo(Account, {
     foreignKey: 'purchase_account_id',
     as: 'cogs_account'
 })
-Product.belongTo(Account,{
+Product.belongsTo(Account,{
     foreignKey: 'inventory_account_id',
     as: 'inventory_account'
 })
