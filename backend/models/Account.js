@@ -1,55 +1,55 @@
-import {DataType} from 'sequelize'
+import {DataTypes} from 'sequelize'
 import sequelize from '../dbConfig.js'
 
 const Account = sequelize.define('Account', {
     id:{
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     account_code:{
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
     account_name:{
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     account_type:{
-        type: DataType.ENUM('asset', 'liability', 'equity', 'revenue', 'expense'),
+        type: DataTypes.ENUM('asset', 'liability', 'equity', 'revenue', 'expense'),
         allowNull: false
     },
     parent_account_id:{
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
             model: 'accounts',
             key: 'id'
         }
     },
     balance_type:{
-        type: DataType.ENUM('debit', 'credit'),
+        type: DataTypes.ENUM('debit', 'credit'),
         allowNull: false
     },
     balance:{
-        type: DataType.DECIMAL(15,2),
+        type: DataTypes.DECIMAL(15,2),
         allowNull: false,
         defaultValue: 0
     },
     description:{
-        type: DataType.TEXT,
+        type: DataTypes.TEXT,
     },
     is_active:{
-        type: DataType.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: true
     },
     created_at:{
-        type: DataType.DATE,
-        defaultValue: DataType.NOW
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
     },
     updated_at:{
-        type: DataType.DATE,
-        defaultValue: DataType.NOW
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
     }
 }, {
     tableName: 'accounts',
